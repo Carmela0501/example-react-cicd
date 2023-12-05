@@ -27,6 +27,8 @@ jobs:
     - name : run the test
       run: npm run test
     - name: run the build
+      env:
+        VITE_APP_PUBLIC_URL: /example-react-cicd/
       run: npm run build
     - name: Deploying to gh-pages
       uses: peaceiris/actions-gh-pages@v3
