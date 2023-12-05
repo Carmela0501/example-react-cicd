@@ -13,6 +13,8 @@ jobs:
   test-build:
     name: Test & Build
     runs-on: ubuntu-22.04
+    permissions:
+          contents: write
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -26,7 +28,13 @@ jobs:
       run: npm run test
     - name: run the build
       run: npm run build
+    - name: Deploying to gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
 
+    
     # TODO: Run tests here
     # TODO: Run build here
     # TODO: Deploy to github pages
